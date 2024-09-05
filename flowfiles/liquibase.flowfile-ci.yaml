@@ -1,0 +1,27 @@
+##########           LIQUIBASE FLOWFILE                ##########
+##########  learn more http://docs.liquibase.com/flow  ##########
+
+## Run this file by executing "liquibase flow" or "liquibase flow --flow-file=liquibase.flowfile.yaml"
+
+stages:
+
+  Status Database:
+    actions:
+      - type: liquibase
+        command: status
+        cmdArgs: {verbose: "true"}
+
+  Run Quality Checks:
+    actions:
+      - type: liquibase
+        command: checks show
+        cmdArgs: {check-status: enabled, auto-update: "on"}
+      - type: liquibase
+        command: checks run
+        cmdArgs: {checks-scope: changelog, auto-update: "on"}
+
+## The endStage ALWAYS RUNS. 
+endStage:
+  actions:
+    - type: liquibase
+      command: history

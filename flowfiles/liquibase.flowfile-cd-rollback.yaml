@@ -1,0 +1,28 @@
+##########           LIQUIBASE FLOWFILE                ##########
+##########  learn more http://docs.liquibase.com/flow  ##########
+
+## Run this file by executing "liquibase flow" or "liquibase flow --flow-file=liquibase.flowfile.yaml"
+
+stages:
+
+  Status Database:
+    actions:
+      - type: liquibase
+        command: status
+        cmdArgs: {verbose: "true"}
+
+  DB_Rollback:
+    actions:
+      - type: liquibase
+        command: rollback
+        cmdArgs: {tag: "${TAG}"}
+      # - type: liquibase
+      #   command: rollbackOneUpdate
+      #   cmdArgs: {force: "true"}
+
+
+## The endStage ALWAYS RUNS. 
+endStage:
+  actions:
+    - type: liquibase
+      command: history
