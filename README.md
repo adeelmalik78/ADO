@@ -18,8 +18,6 @@ Note about releases:
 
  
 ## Database Connections
-Sybase TDS driver jar file is provided in this repo [jtds-1.3.1.jar](sybase).
-
 All information about QA databases is stored in Azure Pipeline library as a variable group `Liquibase_Variables`. It includes connection information such as database URLs, usernames, passwords, etc.
 
 ## Liquibase Properties
